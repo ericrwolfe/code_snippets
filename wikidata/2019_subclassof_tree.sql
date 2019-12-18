@@ -21,7 +21,7 @@ LOOP
 
     INSERT INTO `wikidata.subclasses_2019`
 
-    SELECT a.numeric_id, a.en_label, b.subclass_of_numeric_id, b.subclass_of_label, MIN(b.level+1) level
+    SELECT a.numeric_id, a.en_label, b.subclass_of_numeric_id, b.subclass_of_label, MIN(a.level + b.level) level
     FROM `wikidata.subclasses_2019` a
     JOIN `wikidata.subclasses_2019` b
     ON a.subclass_of_numeric_id = b.numeric_id
