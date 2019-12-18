@@ -5,9 +5,10 @@ SELECT a.*, b.en_label subclass_of_label, 1 level
 FROM (
   SELECT a.numeric_id, en_label, b.numeric_id subclass_of_numeric_id
   FROM `fh-bigquery.wikidata.wikidata_latest_20190822` a, UNNEST(a.subclass_of) b
+  WHERE a.type = 'item'
 ) a
 JOIN `fh-bigquery.wikidata.wikidata_latest_20190822` b
-ON a.subclass_of_numeric_id=b.numeric_id
+ON a.subclass_of_numeric_id = b.numeric_id AND b.type = 'item'
 ;
 
 LOOP
